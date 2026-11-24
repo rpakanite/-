@@ -41,7 +41,7 @@ def parse_all(html):
     return out
 
 def fetch(orig, dest, date, tries=4):
-    path = f"out/ow_{orig}_{dest}_{date}.json"
+    path = f"{os.environ.get('OUTDIR', 'out')}/ow_{orig}_{dest}_{date}.json"
     if os.path.exists(path):
         return path, "cached"
     q = create_query(flights=[FlightQuery(date=date, from_airport=orig, to_airport=dest)],

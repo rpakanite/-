@@ -1,7 +1,7 @@
-import json, glob, datetime as dt, sys
+import json, glob, os, datetime as dt, sys
 def load(orig, dest):
     res = {}
-    for p in glob.glob(f"out/ow_{orig}_{dest}_*.json"):
+    for p in glob.glob(f"{os.environ.get('OUTDIR', 'out')}/ow_{orig}_{dest}_*.json"):
         d = json.load(open(p))
         fl = sorted(d["flights"], key=lambda x: x["price"])
         if fl:
